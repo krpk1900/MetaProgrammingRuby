@@ -78,8 +78,9 @@ end
 # - 定義済みのメソッド (value, value=) は private のままとなっている
 class C4
   def increment
-    @value += 1
-    @value.to_s
+    @value ||= 0
+    self.value = value + 1 # setterを使うようにテストで書かれている
+    value.to_s
   end
 
   private
@@ -123,4 +124,8 @@ end
 class C6
   include M1
   using M1Refinements
+
+  def name 
+    super # p40読み直す
+  end
 end
