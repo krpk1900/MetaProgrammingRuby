@@ -86,6 +86,14 @@ class C4
   private
 
   attr_accessor :value
+  # 以下と同じ
+  # def value
+  #   @value
+  # end
+  #
+  # def value=(val)
+  #   @value = val
+  # end
 end
 
 # Q5.
