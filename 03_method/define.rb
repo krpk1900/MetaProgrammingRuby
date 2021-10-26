@@ -2,6 +2,11 @@
 # 次の動作をする A1 class を実装する
 # - "//" を返す "//"メソッドが存在すること
 
+class A1 
+  define_method("//") do
+    "//"
+  end
+end
 # Q2.
 # 次の動作をする A2 class を実装する
 # - 1. "SmartHR Dev Team"と返すdev_teamメソッドが存在すること
@@ -16,3 +21,6 @@
 # 次の動作をする OriginalAccessor モジュール を実装する
 # - OriginalAccessorモジュールはincludeされたときのみ、my_attr_accessorメソッドを定義すること
 # - my_attr_accessorはgetter/setterに加えて、boolean値を代入した際のみ真偽値判定を行うaccessorと同名の?メソッドができること
+
+a1 = A1.new.send("//".to_sym)
+puts a1
