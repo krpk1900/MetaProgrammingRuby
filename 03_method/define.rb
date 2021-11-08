@@ -22,8 +22,7 @@ class A2
   def initialize(names)
     names.each do |name|
       method_name = "hoge_#{name}"
-      p self
-      self.define_method(method_name) do |num| # なぜdefine_methodだとだめか？
+      define_singleton_method :method_name do |num| # なぜdefine_methodだとだめか？
         return dev_team if num.nil?
         method_name * num
       end
@@ -40,12 +39,14 @@ end
 # - OriginalAccessorモジュールはincludeされたときのみ、my_attr_accessorメソッドを定義すること
 # - my_attr_accessorはgetter/setterに加えて、boolean値を代入した際のみ真偽値判定を行うaccessorと同名の?メソッドができること
 
-# module OriginalAccessor
-#   define_singleton_method(my_attr_accessor) do |attribute|
-#     def attribute
+module OriginalAccessor
+  define_singleton_method :my_attr_accessor do |attribute|
+    
+    
+    def attribute
 
-#     end
-#   end
-# end
+    end
+  end
+end
 
 A2.new([1])
