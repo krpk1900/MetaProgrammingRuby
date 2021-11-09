@@ -62,7 +62,7 @@ module TryOver3::OriginalAccessor2
             @attr == true
           end
         elsif respond_to?("#{attr_sym}?")
-          self.class.undef_method "#{attr_sym}?"
+          self.class.undef_method "#{attr_sym}?" # remove_methodのほうが良さそう
         end
         @attr = value
       end
@@ -79,6 +79,7 @@ end
 
 class TryOver3::A4
   self.class.attr_accessor :runners # runnersはTryOver3::A4に対して呼び出しているので、classからattr_accessorを呼び出す必要がある
+  # Classクラスにsetterとgetterを生やしてしまっているので良くない
 
   def self.const_missing(name)
     if @runners.include?(name)

@@ -39,9 +39,13 @@ end
 # - OriginalAccessorモジュールはincludeされたときのみ、my_attr_accessorメソッドを定義すること
 # - my_attr_accessorはgetter/setterに加えて、boolean値を代入した際のみ真偽値判定を行うaccessorと同名の?メソッドができること
 
+# 途中
 module OriginalAccessor
-  define_singleton_method :my_attr_accessor do |attribute|
-    
+  def self.included(mod)
+    define_singleton_method :my_attr_accessor do |attr_sym|
+      define_method 
+    end
+  end
     
     def attribute
 
