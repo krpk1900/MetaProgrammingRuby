@@ -2,7 +2,7 @@
 # 次の動作をする A1 class を実装する
 # - "//" を返す "//"メソッドが存在すること
 
-class A1 
+class A1
   define_method("//") do
     "//"
   end
@@ -43,13 +43,12 @@ end
 module OriginalAccessor
   def self.included(mod)
     define_singleton_method :my_attr_accessor do |attr_sym|
-      define_method 
+      define_method
     end
   end
-    
-    def attribute
 
-    end
+  def attribute
+
   end
 end
 
