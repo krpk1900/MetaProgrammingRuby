@@ -24,15 +24,25 @@
 #     2. e.g. クラス内で `setting :name, 'bot'` と実行した場合は、respondメソッドに渡されるブロックのスコープ内で `settings.name` の戻り値は `bot` の文字列になります
 
 class SimpleBot
-  def self.respond
+  class << self
+    def self.respond(keyword, &block)
+      
+    end
 
+    def self.setting(key, value)
+
+    end
+
+    def self.settings
+
+    end
   end
 
-  def self.setting
-
-  end
-
-  def self.settings
-
+  def ask(keyword)
+    if 
+      # blockを実行する
+    else
+      nil
+    end
   end
 end
