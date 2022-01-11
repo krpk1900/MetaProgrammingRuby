@@ -24,23 +24,26 @@
 #     2. e.g. クラス内で `setting :name, 'bot'` と実行した場合は、respondメソッドに渡されるブロックのスコープ内で `settings.name` の戻り値は `bot` の文字列になります
 
 class SimpleBot
-  class << self
-    def self.respond(keyword, &block)
-      
-    end
-
-    def self.setting(key, value)
-
-    end
-
-    def self.settings
-
-    end
+  def self.respond(keyword, &block)
+    # respondが複数回呼ばれてからaskが実行されるときを考慮して{}で定義
+    @responces ||= {}
+    @responces[keyword] = block
   end
 
+  def self.setting(key, value)
+    @settings ||= {}
+    @settings[key] = value
+  end
+
+  def self.settings
+    self
+  end
+  
+
   def ask(keyword)
-    if 
-      # blockを実行する
+    if @responces.key?(keyword)
+      # 
+      @responces[keyword].call
     else
       nil
     end
