@@ -14,4 +14,21 @@
 # 3. 履歴がある場合、すべての操作履歴を放棄し、値も初期状態に戻す `restore!` メソッドを作成する
 
 module SimpleModel
+  def self.included(klass)
+    klass.extend(ClassMethods)
+  end
+
+  module ClassMethods
+    def attr_accessor(*syms)
+      # attr_readerはそのまま
+      syms.each { |sym| attr_reader sym}
+      # attr_writerは変更
+      syms.each do |sym|
+        define_method sym
+        
+      end
+    end
+  end
+
 end
+

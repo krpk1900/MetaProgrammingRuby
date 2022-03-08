@@ -37,3 +37,31 @@
 # obj.imitated_method #=> true
 # obj.called_times(:imitated_method) #=> 2
 # ```
+
+class SimpleMock
+	class << self
+		def mock(obj)
+			# objにインスタンスメソッドを特異メソッドとして追加する
+      obj.extend(SimpleMock)
+		end
+
+    def new
+      mock(Object.new)
+    end
+	end
+
+	def expects(method_name, expected_value)
+		define_singleton_method(method_name) do
+			expected_value
+		end
+	end
+
+  def watch(method_name)
+    @called_times[method_name] = 0
+  end
+
+  def called_times(method_name)
+    @called_times[method_name]
+  end
+end
+
